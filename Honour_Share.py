@@ -1,5 +1,5 @@
 """
-公共模塊程序庫. 重復使用的代碼在此更新.
+公共模塊程序庫. 重復使用的代碼在此更新....
 """
 import numpy as np
 import win32com.client
