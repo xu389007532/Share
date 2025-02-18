@@ -10,7 +10,7 @@ from shutil import copyfile
 name=os.environ.get("USERNAME")
 if os.environ.get("USERNAME")=='ITProg02':
     source_path=r"C:\Users\ITProg02\AppData\Local\anaconda3\envs\py3.12\Lib\site-packages\Share"
-    update_path=[r"C:\Users\ITProg02\AppData\Local\anaconda3\envs\inputbs\Lib\site-packages\Share", r"C:\Users\ITProg02\AppData\Local\anaconda3\envs\DIFS\Lib\site-packages\Share"]
+    update_path=[r"C:\Users\ITProg02\AppData\Local\anaconda3\envs\inputbs\Lib\site-packages\Share", r"C:\Users\ITProg02\AppData\Local\anaconda3\envs\DIFS\Lib\site-packages\Share", r"C:\Users\ITProg02\AppData\Local\anaconda3\envs\env_PyQt\Lib\site-packages\Share"]
     update_file=["Honour_Share.py"]
     clear_init_file = "__init__.py"
     for up in update_path:

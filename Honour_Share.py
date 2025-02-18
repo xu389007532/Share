@@ -13,6 +13,7 @@ import xml.dom.minidom
 import sys
 from copy import copy
 import datetime
+import pymssql as sql
 
 
 
@@ -315,6 +316,31 @@ def Py_Decrypto(userCommon_file, Honour_dll):
 
     return userID,userPWD,serverName,databaseName
 
+def read_sql_fetchall(sql_str,userID, userPWD, serverName, databaseName):
+
+
+    conn = sql.connect(server=serverName, user=userID, password=userPWD, database=databaseName,tds_version="7.0")
+    # stock_basic = conn.cursor(as_dict=True)
+
+    stock_basic = conn.cursor()
+    # stock_basic.execute("select  max(id) as num from [dbo].[mv_job] where jobver=%s",jobver)
+
+    # sql_str=f"SELECT templateCode,suffix,widthmm1,widthmm2,UnitArea FROM [HMPSQL01].[dbo].[V_StdTemplate]  where suffix='{Suffix}' and ((widthmm1={m_long} and widthmm2={m_width}) or (widthmm1={m_width} and widthmm2={m_long})) order by suffix,widthmm1,widthmm2,UnitArea desc"
+    stock_basic.execute(sql_str)
+
+    #data=stock_basic.fetchone()
+    all=stock_basic.fetchall()
+    # print(all)
+    # max_id = stock_basic.fetchone()
+    # if max_id is None:
+    #     max_id=0
+    # jobver_id = jobver + "-" + str(max_id + 1).rjust(4, '0')
+    # print(max_id)
+    # values1=(max_id + 1,jobver,jobver_id,process_department)
+    # stock_basic.execute("insert into  [dbo].[mv_job] ([id],[jobver],[jobver_id],[dept]) values(%d,%s,%s,%s)", values1)
+    conn.commit()
+    return all
+    # print(jobver_id)
 
 if __name__ == '__main__':
     # userID, userPWD, serverName, databaseName = Py_Decrypto(r'C:\HonourProgram\Live\userCommon.xml', r"C:\HonourProgram\Live\Appstore\Honour.dll")
